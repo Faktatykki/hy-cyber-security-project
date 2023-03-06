@@ -7,10 +7,12 @@ from .models import Secret
 
 @login_required
 def homePageView(request):
-    all = User.objects.all()
+    username = None
 
-    print(all, "haloo")
-    return render(request, 'index.html')
+    if request.user.is_authenticated:
+        username = request.user.username
+
+    return render(request, 'index.html', { "username": username })
 
 def somethingView(request):
     return HttpResponse("What?")

@@ -5,7 +5,8 @@
     </head>
     <body>
         <h1>
-            Welcome!
+            Welcome {{ user }}!
         </h1>
+        <a href="{% url 'logout' %}">Log out</a>
     </body>
 </html>
