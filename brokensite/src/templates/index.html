@@ -8,23 +8,16 @@
         <h1>
             Welcome {{ user }}!
         </h1>
-        <h3>Secrets</h3>
-        <ul>
-            {% for s in secrets %}
-            <li>
-                {{ s.content }}
-            </li>
-            {% endfor %}
-        </ul>
         
         <a href="{% url 'logout' %}">Log out</a>
         
+        <h2>Add a secret!</h2>
         <form action="add/" method="POST">
             {% csrf_token %}
 
             <input type="text" name="secret"/><br/>
             <input type="submit" value="send"/>
         </form>
-
+        <a href={% url 'secrets' user=user %}>Your secrets wait here!</a>
     </body>
 </html>

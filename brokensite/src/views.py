@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .models import Secret
 
+
 def registerView(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -27,18 +28,34 @@ def registerView(request):
         form = UserCreationForm()
     
     return render(request, "registration/signup.html", {"form": form})
+
+#@login_required
+#def secretsView(request, user):
+#    logged_user = None
+#    user = User.objects.filter(username=user)[0]
+#
+#    if user == request.user:
+#        logged_user = user
+#        secrets = Secret.objects.filter(owner=logged_user)
+#    else:
+#        return render(request, "index.html", { "user": request.user.username })
+#
+#    return render(request, "secrets.html", { "secrets" : secrets, "user" : logged_user.username})
+
+def secretsView(request, user):
+    user = User.objects.filter(username=user)
+    secrets = Secret.objects.filter(owner=user[0].id)
     
+    return render(request, 'secrets.html', { "secrets": secrets , "user": user })
+
 @login_required
 def homePageView(request):
     logged_user = None
-    secrets = None
 
     if request.user.is_authenticated:
         logged_user= request.user
-        secrets = Secret.objects.filter(owner=logged_user)
-
-
-    return render(request, 'index.html', { "username": logged_user.username, "secrets" : secrets })
+        
+    return render(request, 'index.html', { "username": logged_user.username })
 
 @login_required
 def addView(request):
