@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-
 from .models import Secret
 
 
@@ -61,9 +60,10 @@ def homePageView(request):
 def addView(request):
     logged_user = request.user
 
+    #hashaa paskasti
     if request.method == "POST":
         input_secret = request.POST.get("secret")
-        print(input_secret)
+
         Secret.objects.create(owner=logged_user, content=input_secret)
 
     return redirect('/')

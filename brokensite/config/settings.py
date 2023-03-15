@@ -110,7 +110,14 @@ AUTH_PASSWORD_VALIDATORS = [
 #},
 ]
 
-#PASSWORD_HASHERS = [ ]
+#The fix is to comment out or remove password hasher variable declaration altogether. So removing lines 115-120 fixes the problem
+
+PASSWORD_HASHERS = [ 
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.UnsaltedSHA1PasswordHasher',
+    'django.contrib.auth.hashers.UnsaltedMD5PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+]
 
 
 # Internationalization
