@@ -76,7 +76,6 @@ def addView(request):
     if request.method == "POST":
         input_secret = request.POST.get("secret")
 
-
         with connection.cursor() as cursor:
             statement = "INSERT INTO secrets (owner_id, content) VALUES ('" + str(logged_user) + "', '" + str(input_secret) +"')"
             cursor.executescript(statement)
