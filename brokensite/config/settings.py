@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = DJANGO_SECRET_KEY
 
-# SECURITY WARNING: don't run with debug turned on in production!
+#Debug should ABSOLUTELY be False in production, gives away very detailed error messages
 DEBUG = True
 
 ALLOWED_HOSTS = []
