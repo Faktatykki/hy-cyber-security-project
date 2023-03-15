@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
+from django.db import connection
+
 from .models import Secret
 
 
@@ -56,18 +58,25 @@ def homePageView(request):
         
     return render(request, 'index.html', { "username": logged_user.username })
 
+#@login_required
+#def addView(request):
+#    logged_user = request.user
+#
+#    if request.method == "POST":
+#        input_secret = request.POST.get("secret")
+#
+#        Secret.objects.create(owner=logged_user, content=input_secret)
+#
+#    return redirect('/')
+
 @login_required
 def addView(request):
-    logged_user = request.user
+    logged_user = request.user.id
 
-    #hashaa paskasti
     if request.method == "POST":
         input_secret = request.POST.get("secret")
 
-        Secret.objects.create(owner=logged_user, content=input_secret)
+        with connection.cursor() as cursor:
+            cursor.executescript("INSERT INTO secrets (content, owner_id) VALUES (" + input_secret + ", " + str(logged_user) +")")
 
     return redirect('/')
-
-
-def somethingView(request):
-    return HttpResponse("What?")
