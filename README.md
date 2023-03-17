@@ -7,6 +7,12 @@ This is a project for University of Helsinki's cyber security course. The projec
 Run
 
 ```
+pip -r requirements.txt
+```
+
+Run
+
+```
 python3 manage.py migrate
 ```
 
