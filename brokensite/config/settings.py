@@ -112,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 #},
 ]
 
-#The fix is to comment out or remove password hasher variable declaration altogether. So removing lines 115-120 fixes the problem
+#The fix is to comment out or remove password hasher variable declaration altogether. So removing lines 117-122 fixes the problem
 
 PASSWORD_HASHERS = [ 
     'django.contrib.auth.hashers.MD5PasswordHasher',
