@@ -7,7 +7,7 @@ This is a project for University of Helsinki's cyber security course. The projec
 Run
 
 ```
-pip -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Run
